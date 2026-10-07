@@ -1,6 +1,4 @@
-# 2514101070
-
-🏔️ Website Wisata Gunung Ciremai Untuk Tugas Pertemuan 3
+#🏔️ Website Wisata Gunung Ciremai Untuk Tugas Pertemuan 3
 
 👤 Biodata
 
