@@ -3,9 +3,13 @@
 👤 Biodata
 
 Nama Lengkap: Helmy Afriza Taufiqurohman
+
 NPM: 2514101070
+
 Program Studi: Informatika
+
 Fakultas: Teknik
+
 Instansi: Universitas Majalengka
 
 folder/
