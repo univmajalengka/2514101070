@@ -12,8 +12,8 @@ Fakultas: Teknik
 
 Instansi: Universitas Majalengka
 
-folder/
+T3/
 │
-├── index.html # File utama website
-└── asset # Folder asset
-└──foto/video # Foto/video tempat wisata
+├── index.html        # File utama website
+├── README.md         # Dokumentasi proyek ini
+└── asset             # Foto tempat wisata Anda (untuk bagian Beranda)
