@@ -1,0 +1,968 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wisata Gunung Ciremai - Pemesanan Paket Wisata</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sky-blue: #00b4d8;
+        --sky-blue-dark: #0096c7;
+        --sky-blue-soft: #87ceeb;
+        --sky-blue-light: #e0f7ff;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f4fbfd;
+        scroll-behavior: smooth;
+      }
+      section[id],
+      header[id] {
+        scroll-margin-top: 80px;
+      }
+      .navbar-ciremai {
+        background-color: var(--sky-blue);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      }
+      .navbar-ciremai .navbar-brand {
+        color: #ffffff !important;
+        font-weight: 500;
+      }
+      .navbar-ciremai .nav-link {
+        position: relative;
+        color: #ffffff !important;
+        font-weight: 500;
+        padding: 0.5rem 0.9rem;
+        border-radius: 8px;
+        transition:
+          color 0.25s ease,
+          background-color 0.25s ease,
+          transform 0.2s ease;
+      }
+      .navbar-ciremai .nav-link i {
+        transition: transform 0.25s ease;
+      }
+      .navbar-ciremai .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0.9rem;
+        right: 0.9rem;
+        bottom: 0.3rem;
+        height: 2px;
+        background-color: #ffffff;
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.25s ease;
+      }
+      .navbar-ciremai .nav-link:hover,
+      .navbar-ciremai .nav-link.active {
+        color: #023047 !important;
+        background-color: rgba(255, 255, 255, 0.35);
+        transform: translateY(-2px);
+      }
+      .navbar-ciremai .nav-link:hover::after,
+      .navbar-ciremai .nav-link.active::after {
+        transform: scaleX(1);
+      }
+      .navbar-ciremai .nav-link:hover i {
+        transform: translateY(-2px) scale(1.15);
+      }
+      .navbar-ciremai .nav-link.active {
+        font-weight: 600;
+      }
+      .hero-section {
+        position: relative;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(2, 48, 71, 0.55), rgba(2, 48, 71, 0.55)),
+          url("asset/foto/foto-saya.jpg") center/cover no-repeat;
+      }
+      .hero-badge {
+        background-color: var(--sky-blue);
+        letter-spacing: 1px;
+      }
+      .btn-ciremai {
+        background-color: var(--sky-blue);
+        border-color: var(--sky-blue);
+        color: #fff;
+        font-weight: 600;
+      }
+      .btn-ciremai:hover {
+        background-color: var(--sky-blue-dark);
+        border-color: var(--sky-blue-dark);
+        color: #fff;
+      }
+      .text-ciremai {
+        color: var(--sky-blue-dark) !important;
+      }
+      .bg-ciremai-light {
+        background-color: var(--sky-blue-light);
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 4px;
+        margin: 12px auto 0;
+        background-color: var(--sky-blue);
+        border-radius: 2px;
+      }
+      .card-paket {
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        border: none;
+      }
+      .card-paket:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgba(0, 180, 216, 0.28) !important;
+      }
+      .card-paket img {
+        height: 210px;
+        object-fit: cover;
+      }
+      .form-section-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--sky-blue-dark);
+      }
+      .layanan-card {
+        border: 1px solid #dbe7ec;
+        border-radius: 12px;
+        padding: 0.75rem;
+        height: 100%;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          background-color 0.2s;
+      }
+      .layanan-card:hover {
+        border-color: var(--sky-blue);
+        background-color: var(--sky-blue-light);
+      }
+      .layanan-card:has(input:checked) {
+        border-color: var(--sky-blue);
+        background-color: var(--sky-blue-light);
+      }
+      .summary-card {
+        position: sticky;
+        top: 90px;
+      }
+      footer.footer-ciremai {
+        background-color: #023047;
+        color: #cfe9f1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= NAVBAR (BIRU AWAN) ================= -->
+    <nav class="navbar navbar-expand-lg navbar-ciremai sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#beranda">
+          <i class="fa-solid fa-mountain-sun fa-lg"></i>
+          <div class="lh-1">
+            <span class="fw-bold d-block">Wisata Gunung Ciremai</span>
+            <small style="font-size: 0.7rem; opacity: 0.9"
+              >Pesona Alam & Petualangan</small
+            >
+          </div>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navCiremai"
+          aria-controls="navCiremai"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navCiremai">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1">
+            <li class="nav-item">
+              <a class="nav-link active" href="#beranda"
+                ><i class="fa-solid fa-house me-1"></i>Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#paket"
+                ><i class="fa-solid fa-suitcase-rolling me-1"></i>Paket
+                Wisata</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pemesanan"
+                ><i class="fa-solid fa-pen-to-square me-1"></i>Pemesanan</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#daftar-pesanan"
+                ><i class="fa-solid fa-table-list me-1"></i>Daftar Pesanan</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HERO SECTION / BERANDA ================= -->
+    <header id="beranda" class="hero-section">
+      <div class="container px-4 py-5" style="max-width: 860px">
+        <span
+          class="badge hero-badge rounded-pill px-3 py-2 mb-3 text-uppercase"
+        >
+          <i class="fa-solid fa-location-dot me-1"></i> Jawa Barat, Indonesia
+        </span>
+        <h1 class="display-4 fw-bold mb-3">Wisata Gunung Ciremai</h1>
+        <p class="lead mb-4" style="text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6)">
+          Jelajahi keindahan Gunung Ciremai, gunung tertinggi di Jawa Barat
+          dengan puncak setinggi 3.078 mdpl. Nikmati udara sejuk pegunungan,
+          hamparan hutan tropis, savana yang menawan, serta pengalaman
+          pendakian, camping, dan outbound yang tak terlupakan.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="#paket" class="btn btn-ciremai btn-lg px-4">
+            <i class="fa-solid fa-suitcase-rolling me-1"></i> Lihat Paket
+            Wisata
+          </a>
+          <a
+            href="#pemesanan"
+            class="btn btn-outline-light btn-lg px-4 fw-semibold"
+          >
+            <i class="fa-solid fa-calendar-check me-1"></i> Pesan Sekarang
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= PAKET WISATA & VIDEO ================= -->
+    <section id="paket" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold section-title">Paket Wisata Gunung Ciremai</h2>
+          <p class="text-muted mt-3">
+            Pilihan paket terbaik untuk menjelajahi keindahan Gunung Ciremai
+            bersama keluarga maupun rombongan.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Paket 1 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-paket shadow-sm h-100">
+              <img
+                src="asset/foto/paket-1.jpg"
+                class="card-img-top"
+                alt="Paket Pendakian Jalur Palutungan"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-ciremai-light text-ciremai mb-2"
+                  >Favorit Pendaki</span
+                >
+                <h5 class="card-title fw-bold">
+                  Paket Pendakian Jalur Palutungan
+                </h5>
+                <p class="card-text text-muted small flex-grow-1">
+                  Pendakian menuju Puncak Gunung Ciremai melalui jalur
+                  Palutungan, Kuningan. Dilengkapi pemandu berpengalaman,
+                  tenda, dan logistik selama perjalanan.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-ciremai">Rp 150.000 / orang</span>
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
+                    >Pesan</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paket 2 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-paket shadow-sm h-100">
+              <img
+                src="asset/foto/paket-2.jpg"
+                class="card-img-top"
+                alt="Paket Camping & Outbound"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-ciremai-light text-ciremai mb-2"
+                  >Keluarga & Rombongan</span
+                >
+                <h5 class="card-title fw-bold">Paket Camping & Outbound</h5>
+                <p class="card-text text-muted small flex-grow-1">
+                  Bermalam di savana Ciremai dengan aktivitas api unggun,
+                  outbound, dan permainan tim yang seru di tengah sejuknya
+                  pegunungan.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-ciremai">Rp 250.000 / orang</span>
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
+                    >Pesan</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paket 3 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-paket shadow-sm h-100">
+              <img
+                src="asset/foto/paket-3.jpg"
+                class="card-img-top"
+                alt="Paket Wisata Alam & Edukasi"
+              />
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-ciremai-light text-ciremai mb-2"
+                  >Edukasi Alam</span
+                >
+                <h5 class="card-title fw-bold">Paket Wisata Alam & Edukasi</h5>
+                <p class="card-text text-muted small flex-grow-1">
+                  Eksplorasi air terjun, kebun teh, dan keanekaragaman hayati
+                  lereng Ciremai bersama pemandu lokal, cocok untuk kegiatan
+                  study tour.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-ciremai">Rp 200.000 / orang</span>
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
+                    >Pesan</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Promosi -->
+        <div class="mt-5">
+          <div class="text-center mb-4">
+            <h3 class="fw-bold text-ciremai">
+              <i class="fa-solid fa-video text-ciremai me-1"></i> Video Promosi
+              Wisata Gunung Ciremai
+            </h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-16x9">
+                  <video controls preload="auto">
+                    <source src="asset/video/video-1.mp4" type="video/mp4" />
+                    Browser Anda tidak mendukung tag video.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-16x9">
+                  <video controls preload="auto">
+                    <source src="asset/video/video-2.mp4" type="video/mp4" />
+                    Browser Anda tidak mendukung tag video.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-16x9">
+                  <video controls preload="auto">
+                    <source src="asset/video/video-3.mp4" type="video/mp4" />
+                    Browser Anda tidak mendukung tag video.
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FORM PEMESANAN ================= -->
+    <section id="pemesanan" class="py-5 bg-ciremai-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold section-title">Form Pemesanan Paket</h2>
+          <p class="text-muted mt-3">
+            Isi data perjalanan Anda. Harga paket dan total tagihan dihitung
+            otomatis dan transparan.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- ===== Kolom Kiri: Formulir ===== -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4">
+              <div class="card-body p-4 p-md-5">
+                <form id="orderForm" novalidate>
+                  <input type="hidden" id="editIndex" value="-1" />
+
+                  <!-- A. Data Pemesan -->
+                  <p class="form-section-title mb-3">
+                    <i class="fa-solid fa-user me-1"></i> Data Pemesan
+                  </p>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="nama" class="form-label fw-semibold"
+                        >Nama Pemesan <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nama"
+                        placeholder="Masukkan nama lengkap"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="hp" class="form-label fw-semibold"
+                        >Nomor HP <span class="text-danger">*</span></label
+                      >
+                      <div class="input-group">
+                        <span class="input-group-text">+62</span>
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="hp"
+                          placeholder="8123456789"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- B. Detail Perjalanan -->
+                  <p class="form-section-title mb-3">
+                    <i class="fa-solid fa-route me-1"></i> Detail Perjalanan
+                  </p>
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <label for="paket" class="form-label fw-semibold"
+                        >Pilih Paket Wisata
+                        <span class="text-danger">*</span></label
+                      >
+                      <select class="form-select" id="paketPilih">
+                        <option value="palutungan">
+                          Paket Pendakian Jalur Palutungan - Rp 150.000 /
+                          orang/hari
+                        </option>
+                        <option value="camping">
+                          Paket Camping & Outbound - Rp 250.000 / orang/hari
+                        </option>
+                        <option value="alam">
+                          Paket Wisata Alam & Edukasi - Rp 200.000 / orang/hari
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="waktu" class="form-label fw-semibold"
+                        >Waktu Perjalanan (Hari)
+                        <span class="text-danger">*</span></label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="waktu"
+                          min="1"
+                          value="1"
+                        />
+                        <span class="input-group-text">Hari</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="peserta" class="form-label fw-semibold"
+                        >Jumlah Peserta
+                        <span class="text-danger">*</span></label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="peserta"
+                          min="1"
+                          value="1"
+                        />
+                        <span class="input-group-text">Orang</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- C. Layanan Tambahan -->
+                  <p class="form-section-title mb-3">
+                    <i class="fa-solid fa-concierge-bell me-1"></i> Layanan
+                    Tambahan (opsional)
+                  </p>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                      <label class="layanan-card d-block mb-0" for="penginapan">
+                        <div class="form-check mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="penginapan"
+                          />
+                          <span class="form-check-label fw-semibold"
+                            >Penginapan / Tenda</span
+                          >
+                        </div>
+                        <small class="text-muted d-block mt-1"
+                          >Rp 1.000.000 / orang</small
+                        >
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="layanan-card d-block mb-0" for="transportasi">
+                        <div class="form-check mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="transportasi"
+                          />
+                          <span class="form-check-label fw-semibold"
+                            >Transportasi</span
+                          >
+                        </div>
+                        <small class="text-muted d-block mt-1"
+                          >Rp 1.200.000 / rombongan</small
+                        >
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="layanan-card d-block mb-0" for="makanan">
+                        <div class="form-check mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="makanan"
+                          />
+                          <span class="form-check-label fw-semibold"
+                            >Makanan / Logistik</span
+                          >
+                        </div>
+                        <small class="text-muted d-block mt-1"
+                          >Rp 500.000 / orang/hari</small
+                        >
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap gap-2 pt-2">
+                    <button type="submit" class="btn btn-ciremai px-4">
+                      <i class="fa-solid fa-floppy-disk me-1"></i> Simpan
+                      Pesanan
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      onclick="resetForm()"
+                    >
+                      <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Kolom Kanan: Rincian Biaya ===== -->
+          <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 summary-card">
+              <div
+                class="card-header text-white fw-semibold"
+                style="background-color: var(--sky-blue)"
+              >
+                <i class="fa-solid fa-calculator me-1"></i> Rincian Biaya
+              </div>
+              <div class="card-body">
+                <ul id="rincian" class="list-unstyled mb-0"></ul>
+
+                <div
+                  class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top"
+                >
+                  <span class="fw-semibold">Harga Paket</span>
+                  <span id="hargaPaketText" class="fw-semibold">Rp 0</span>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center mt-2"
+                >
+                  <span class="fw-bold fs-5">Total Tagihan</span>
+                  <span id="totalTagihanText" class="fw-bold fs-5 text-ciremai"
+                    >Rp 0</span
+                  >
+                </div>
+
+                <div class="alert alert-light border mt-3 mb-0 small text-muted">
+                  <i class="fa-solid fa-circle-info me-1 text-ciremai"></i>
+                  Harga paket dihitung per orang per hari, ditambah layanan
+                  tambahan yang dipilih.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TABEL DAFTAR PESANAN ================= -->
+    <section id="daftar-pesanan" class="py-5">
+      <div class="container">
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-2"
+        >
+          <div>
+            <h2 class="fw-bold mb-1">Daftar Pesanan</h2>
+            <p class="text-muted mb-0 small">
+              Riwayat pemesanan paket wisata Gunung Ciremai.
+            </p>
+          </div>
+          <span class="badge bg-ciremai-light text-ciremai fs-6">
+            Total: <span id="totalPesanan">0</span> pesanan
+          </span>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead style="background-color: var(--sky-blue); color: #fff">
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">No HP</th>
+                  <th scope="col">Paket</th>
+                  <th scope="col">Hari</th>
+                  <th scope="col">Peserta</th>
+                  <th scope="col">Layanan</th>
+                  <th scope="col">Harga Paket</th>
+                  <th scope="col">Total</th>
+                  <th scope="col" class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabelBody">
+                <!-- diisi JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer-ciremai py-4 mt-3">
+      <div class="container text-center">
+        <div class="mb-2">
+          <i class="fa-solid fa-mountain-sun fa-lg me-1"></i>
+          <span class="fw-semibold text-white">Wisata Gunung Ciremai</span>
+        </div>
+        <p class="mb-0 small">&copy; 2026 Wisata Gunung Ciremai</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ================= JAVASCRIPT MURNI ================= -->
+    <script>
+      let daftarPesanan = [];
+
+      // Daftar paket: harga dasar per orang per hari
+      const PAKET = {
+        palutungan: { nama: "Paket Pendakian Jalur Palutungan", harga: 150000 },
+        camping: { nama: "Paket Camping & Outbound", harga: 250000 },
+        alam: { nama: "Paket Wisata Alam & Edukasi", harga: 200000 },
+      };
+
+      // Layanan tambahan beserta satuan perhitungannya
+      const LAYANAN = {
+        penginapan: { label: "Penginapan / Tenda", harga: 1000000, satuan: "orang" },
+        transportasi: { label: "Transportasi", harga: 1200000, satuan: "rombongan" },
+        makanan: { label: "Makanan / Logistik", harga: 500000, satuan: "orang_hari" },
+      };
+
+      const form = document.getElementById("orderForm");
+      const inputNama = document.getElementById("nama");
+      const inputHp = document.getElementById("hp");
+      const inputPaket = document.getElementById("paketPilih");
+      const inputWaktu = document.getElementById("waktu");
+      const inputPeserta = document.getElementById("peserta");
+      const cbPenginapan = document.getElementById("penginapan");
+      const cbTransportasi = document.getElementById("transportasi");
+      const cbMakanan = document.getElementById("makanan");
+      const editIndex = document.getElementById("editIndex");
+
+      function rupiah(angka) {
+        return "Rp " + Number(angka).toLocaleString("id-ID");
+      }
+
+      // Menghitung biaya per layanan berdasarkan satuannya
+      function hitungLayanan(layanan, peserta, hari) {
+        if (layanan.satuan === "orang") return layanan.harga * peserta;
+        if (layanan.satuan === "orang_hari")
+          return layanan.harga * peserta * hari;
+        return layanan.harga; // per rombongan
+      }
+
+      function satuanText(layanan, peserta, hari) {
+        if (layanan.satuan === "orang")
+          return `${rupiah(layanan.harga)} Ã— ${peserta} orang`;
+        if (layanan.satuan === "orang_hari")
+          return `${rupiah(layanan.harga)} Ã— ${peserta} orang Ã— ${hari} hari`;
+        return `${rupiah(layanan.harga)} / rombongan`;
+      }
+
+      // Kalkulasi utama + render rincian biaya
+      function hitung() {
+        const paket = PAKET[inputPaket.value];
+        const hari = Math.max(1, parseInt(inputWaktu.value) || 1);
+        const peserta = Math.max(1, parseInt(inputPeserta.value) || 1);
+
+        const rincian = [];
+
+        // Baris 1: paket wisata (per orang per hari)
+        const hargaPaket = paket.harga * peserta * hari;
+        rincian.push({
+          label: paket.nama,
+          detail: `${rupiah(paket.harga)} Ã— ${peserta} orang Ã— ${hari} hari`,
+          jumlah: hargaPaket,
+        });
+
+        // Baris layanan tambahan
+        if (cbPenginapan.checked) {
+          rincian.push({
+            label: LAYANAN.penginapan.label,
+            detail: satuanText(LAYANAN.penginapan, peserta, hari),
+            jumlah: hitungLayanan(LAYANAN.penginapan, peserta, hari),
+          });
+        }
+        if (cbTransportasi.checked) {
+          rincian.push({
+            label: LAYANAN.transportasi.label,
+            detail: satuanText(LAYANAN.transportasi, peserta, hari),
+            jumlah: hitungLayanan(LAYANAN.transportasi, peserta, hari),
+          });
+        }
+        if (cbMakanan.checked) {
+          rincian.push({
+            label: LAYANAN.makanan.label,
+            detail: satuanText(LAYANAN.makanan, peserta, hari),
+            jumlah: hitungLayanan(LAYANAN.makanan, peserta, hari),
+          });
+        }
+
+        const total = rincian.reduce((sum, item) => sum + item.jumlah, 0);
+
+        renderRincian(rincian);
+        document.getElementById("hargaPaketText").textContent =
+          rupiah(hargaPaket);
+        document.getElementById("totalTagihanText").textContent = rupiah(total);
+
+        return { paket, hari, peserta, hargaPaket, total };
+      }
+
+      function renderRincian(rincian) {
+        const ul = document.getElementById("rincian");
+        ul.innerHTML = rincian
+          .map(
+            (item) => `
+          <li class="d-flex justify-content-between align-items-start py-2 border-bottom">
+            <div class="pe-3">
+              <div class="fw-semibold small">${item.label}</div>
+              <div class="text-muted" style="font-size: 0.72rem">${item.detail}</div>
+            </div>
+            <div class="fw-semibold small text-nowrap">${rupiah(item.jumlah)}</div>
+          </li>`,
+          )
+          .join("");
+      }
+
+      function ambilLayanan() {
+        const arr = [];
+        if (cbPenginapan.checked) arr.push(LAYANAN.penginapan.label);
+        if (cbTransportasi.checked) arr.push(LAYANAN.transportasi.label);
+        if (cbMakanan.checked) arr.push(LAYANAN.makanan.label);
+        return arr;
+      }
+
+      [inputPaket, inputWaktu, inputPeserta, cbPenginapan, cbTransportasi, cbMakanan].forEach(
+        (el) => el.addEventListener("input", hitung),
+      );
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const nama = inputNama.value.trim();
+        const hp = inputHp.value.trim();
+
+        if (!nama || !hp) {
+          alert("Nama pemesan dan nomor HP wajib diisi!");
+          return;
+        }
+
+        const data = hitung();
+
+        const pesanan = {
+          nama: nama,
+          hp: hp,
+          paket: data.paket.nama,
+          waktu: data.hari,
+          peserta: data.peserta,
+          layanan: ambilLayanan(),
+          hargaPaket: data.hargaPaket,
+          total: data.total,
+        };
+
+        const idx = parseInt(editIndex.value);
+        if (idx >= 0) {
+          daftarPesanan[idx] = pesanan;
+        } else {
+          daftarPesanan.push(pesanan);
+        }
+
+        renderTabel();
+        resetForm();
+        document
+          .getElementById("daftar-pesanan")
+          .scrollIntoView({ behavior: "smooth" });
+      });
+
+      function renderTabel() {
+        const tbody = document.getElementById("tabelBody");
+        document.getElementById("totalPesanan").textContent =
+          daftarPesanan.length;
+
+        if (daftarPesanan.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="10" class="text-center text-muted py-4">Belum ada data pesanan.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = daftarPesanan
+          .map(
+            (o, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td class="fw-semibold">${o.nama}</td>
+            <td>${o.hp}</td>
+            <td>${o.paket}</td>
+            <td>${o.waktu}</td>
+            <td>${o.peserta}</td>
+            <td>${o.layanan.length ? o.layanan.join(", ") : "-"}</td>
+            <td>${rupiah(o.hargaPaket)}</td>
+            <td class="fw-bold text-ciremai">${rupiah(o.total)}</td>
+            <td class="text-nowrap text-center">
+              <button class="btn btn-sm btn-warning" onclick="editPesanan(${i})" title="Edit">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="btn btn-sm btn-danger" onclick="hapusPesanan(${i})" title="Hapus">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </td>
+          </tr>
+        `,
+          )
+          .join("");
+      }
+
+      function editPesanan(i) {
+        const o = daftarPesanan[i];
+        editIndex.value = i;
+        inputNama.value = o.nama;
+        inputHp.value = o.hp;
+        inputWaktu.value = o.waktu;
+        inputPeserta.value = o.peserta;
+
+        const kodePaket = Object.keys(PAKET).find(
+          (k) => PAKET[k].nama === o.paket,
+        );
+        if (kodePaket) inputPaket.value = kodePaket;
+
+        cbPenginapan.checked = o.layanan.includes(LAYANAN.penginapan.label);
+        cbTransportasi.checked = o.layanan.includes(LAYANAN.transportasi.label);
+        cbMakanan.checked = o.layanan.includes(LAYANAN.makanan.label);
+
+        hitung();
+        document
+          .getElementById("pemesanan")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function hapusPesanan(i) {
+        if (confirm("Yakin ingin menghapus pesanan ini?")) {
+          daftarPesanan.splice(i, 1);
+          renderTabel();
+        }
+      }
+
+      function resetForm() {
+        form.reset();
+        editIndex.value = "-1";
+        inputWaktu.value = "1";
+        inputPeserta.value = "1";
+        hitung();
+      }
+
+      // ====== Menu Navbar Interaktif ======
+      const navbarCollapse = document.getElementById("navCiremai");
+      const navLinks = document.querySelectorAll(".navbar-ciremai .nav-link");
+      const navSections = Array.from(navLinks)
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      // Klik menu: set aktif + tutup navbar (mobile)
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+          if (navbarCollapse.classList.contains("show")) {
+            bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
+          }
+        });
+      });
+
+      // Highlight menu otomatis sesuai posisi scroll
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((l) =>
+                l.classList.toggle(
+                  "active",
+                  l.getAttribute("href") === "#" + entry.target.id,
+                ),
+              );
+            }
+          });
+        },
+        { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+      );
+      navSections.forEach((sec) => spy.observe(sec));
+
+      renderTabel();
+      hitung();
+    </script>
+  </body>
+</html>
+
