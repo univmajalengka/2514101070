@@ -247,8 +247,7 @@
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
           <a href="#paket" class="btn btn-ciremai btn-lg px-4">
-            <i class="fa-solid fa-suitcase-rolling me-1"></i> Lihat Paket
-            Wisata
+            <i class="fa-solid fa-suitcase-rolling me-1"></i> Lihat Paket Wisata
           </a>
           <a
             href="#pemesanan"
@@ -289,14 +288,12 @@
                 </h5>
                 <p class="card-text text-muted small flex-grow-1">
                   Pendakian menuju Puncak Gunung Ciremai melalui jalur
-                  Palutungan, Kuningan. Dilengkapi pemandu berpengalaman,
-                  tenda, dan logistik selama perjalanan.
+                  Palutungan, Kuningan. Dilengkapi pemandu berpengalaman, tenda,
+                  dan logistik selama perjalanan.
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="fw-bold text-ciremai">Rp 150.000 / orang</span>
-                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
-                    >Pesan</a
-                  >
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm">Pesan</a>
                 </div>
               </div>
             </div>
@@ -322,9 +319,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="fw-bold text-ciremai">Rp 250.000 / orang</span>
-                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
-                    >Pesan</a
-                  >
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm">Pesan</a>
                 </div>
               </div>
             </div>
@@ -350,9 +345,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="fw-bold text-ciremai">Rp 200.000 / orang</span>
-                  <a href="#pemesanan" class="btn btn-ciremai btn-sm"
-                    >Pesan</a
-                  >
+                  <a href="#pemesanan" class="btn btn-ciremai btn-sm">Pesan</a>
                 </div>
               </div>
             </div>
@@ -369,7 +362,9 @@
           </div>
           <div class="row g-4">
             <div class="col-md-6 col-lg-4">
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+              <div
+                class="card border-0 shadow-sm rounded-4 overflow-hidden h-100"
+              >
                 <div class="ratio ratio-16x9">
                   <video controls preload="auto">
                     <source src="asset/video/video-1.mp4" type="video/mp4" />
@@ -379,7 +374,9 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4">
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+              <div
+                class="card border-0 shadow-sm rounded-4 overflow-hidden h-100"
+              >
                 <div class="ratio ratio-16x9">
                   <video controls preload="auto">
                     <source src="asset/video/video-2.mp4" type="video/mp4" />
@@ -389,7 +386,9 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4">
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+              <div
+                class="card border-0 shadow-sm rounded-4 overflow-hidden h-100"
+              >
                 <div class="ratio ratio-16x9">
                   <video controls preload="auto">
                     <source src="asset/video/video-3.mp4" type="video/mp4" />
@@ -535,7 +534,10 @@
                       </label>
                     </div>
                     <div class="col-md-4">
-                      <label class="layanan-card d-block mb-0" for="transportasi">
+                      <label
+                        class="layanan-card d-block mb-0"
+                        for="transportasi"
+                      >
                         <div class="form-check mb-0">
                           <input
                             class="form-check-input"
@@ -615,7 +617,9 @@
                   >
                 </div>
 
-                <div class="alert alert-light border mt-3 mb-0 small text-muted">
+                <div
+                  class="alert alert-light border mt-3 mb-0 small text-muted"
+                >
                   <i class="fa-solid fa-circle-info me-1 text-ciremai"></i>
                   Harga paket dihitung per orang per hari, ditambah layanan
                   tambahan yang dipilih.
@@ -697,9 +701,21 @@
 
       // Layanan tambahan beserta satuan perhitungannya
       const LAYANAN = {
-        penginapan: { label: "Penginapan / Tenda", harga: 1000000, satuan: "orang" },
-        transportasi: { label: "Transportasi", harga: 1200000, satuan: "rombongan" },
-        makanan: { label: "Makanan / Logistik", harga: 500000, satuan: "orang_hari" },
+        penginapan: {
+          label: "Penginapan / Tenda",
+          harga: 1000000,
+          satuan: "orang",
+        },
+        transportasi: {
+          label: "Transportasi",
+          harga: 1200000,
+          satuan: "rombongan",
+        },
+        makanan: {
+          label: "Makanan / Logistik",
+          harga: 500000,
+          satuan: "orang_hari",
+        },
       };
 
       const form = document.getElementById("orderForm");
@@ -806,9 +822,14 @@
         return arr;
       }
 
-      [inputPaket, inputWaktu, inputPeserta, cbPenginapan, cbTransportasi, cbMakanan].forEach(
-        (el) => el.addEventListener("input", hitung),
-      );
+      [
+        inputPaket,
+        inputWaktu,
+        inputPeserta,
+        cbPenginapan,
+        cbTransportasi,
+        cbMakanan,
+      ].forEach((el) => el.addEventListener("input", hitung));
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -965,4 +986,3 @@
     </script>
   </body>
 </html>
-
