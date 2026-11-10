@@ -1,1 +1,1 @@
-# Program Perhitungan Diskon (PHP)
+## Program Perhitungan Diskon (PHP)
